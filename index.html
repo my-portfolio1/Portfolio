@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Разработка программ Python | Node.js | Telegram боты | Автоматизация</title>
+    <title>Разработка под ключ | Автоматизация | Продвижение в социальных сетях</title>
     <style>
         * {
             margin: 0;
@@ -96,19 +96,20 @@
         }
 
         .hero-content {
-            max-width: 800px;
+            max-width: 900px;
             z-index: 2;
         }
 
         .hero-title {
-            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-size: clamp(2rem, 4vw, 3.2rem);
             font-weight: 700;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
             background: linear-gradient(135deg, #64ffda, #48bbff, #ff6b6b);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             animation: glow 2s ease-in-out infinite alternate;
+            line-height: 1.3;
         }
 
         @keyframes glow {
@@ -158,9 +159,10 @@
             box-shadow: 0 15px 40px rgba(100, 255, 218, 0.5);
         }
 
-        /* Services Section */
-        .services {
-            padding: 60px 20px;
+        /* Technologies Section */
+        .technologies {
+            padding: 80px 20px;
+            background: rgba(0, 0, 0, 0.1);
             position: relative;
         }
 
@@ -177,6 +179,134 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .tech-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 30px 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 15px;
+            border: 1px solid rgba(100, 255, 218, 0.2);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .tech-item:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: #64ffda;
+            transform: translateY(-5px);
+        }
+
+        .tech-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #64ffda, #48bbff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .tech-name {
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        /* Process Section */
+        .process {
+            padding: 80px 20px;
+            position: relative;
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .process-step {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .process-step::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #64ffda, #48bbff, #ff6b6b);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .process-step:hover::before {
+            transform: scaleX(1);
+        }
+
+        .process-step:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .process-number {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #64ffda, #48bbff);
+            border-radius: 50%;
+            color: #0f0f23;
+            font-weight: bold;
+            font-size: 1.2rem;
+            line-height: 50px;
+            margin-bottom: 1.5rem;
+        }
+
+        .process-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #64ffda, #48bbff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .process-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #ffffff;
+        }
+
+        .process-description {
+            color: #b8c5d6;
+            line-height: 1.6;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 80px 20px;
+            background: rgba(0, 0, 0, 0.1);
+            position: relative;
         }
 
         .services-grid {
@@ -352,6 +482,16 @@
 
         /* Responsive */
         @media (max-width: 768px) {
+            .hero-title {
+                font-size: clamp(1.5rem, 6vw, 2.5rem);
+            }
+            
+            .tech-grid {
+                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+                gap: 20px;
+            }
+            
+            .process-grid,
             .services-grid {
                 grid-template-columns: 1fr;
                 gap: 20px;
@@ -362,7 +502,7 @@
                 gap: 20px;
             }
             
-            .service-card, .stat-item {
+            .service-card, .stat-item, .process-step {
                 padding: 30px 20px;
             }
         }
@@ -376,7 +516,7 @@
     <header>
         <div class="bubbles" id="bubbles"></div>
         <div class="hero-content">
-            <h1 class="hero-title">Разработка программного обеспечения под ключ</h1>
+            <h1 class="hero-title">Разработка под ключ. Автоматизация. Продвижение в социальных сетях</h1>
             <p class="hero-subtitle">Python • Node.js • Electron • Telegram боты • Автоматизация • SMM продвижение</p>
             <a href="https://t.me/EcommerceGr" class="cta-button" target="_blank">🚀 Обсудить проект</a>
         </div>
@@ -385,10 +525,85 @@
         <div class="floating-element"></div>
     </header>
 
+    <!-- Technologies Section -->
+    <section class="technologies">
+        <div class="container">
+            <h2 class="section-title">Технологии</h2>
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <div class="tech-icon">🐍</div>
+                    <div class="tech-name">Python</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">⚡</div>
+                    <div class="tech-name">Node.js</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">📱</div>
+                    <div class="tech-name">Telegram</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">🖥️</div>
+                    <div class="tech-name">Electron</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">💾</div>
+                    <div class="tech-name">SQLite</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">☁️</div>
+                    <div class="tech-name">AWS</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">🔧</div>
+                    <div class="tech-name">API</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process">
+        <div class="container">
+            <h2 class="section-title">Взаимодействие</h2>
+            <div class="process-grid">
+                <div class="process-step">
+                    <div class="process-number">1</div>
+                    <div class="process-icon">💬</div>
+                    <h3 class="process-title">Обращение</h3>
+                </div>
+                
+                <div class="process-step">
+                    <div class="process-number">2</div>
+                    <div class="process-icon">🔍</div>
+                    <h3 class="process-title">Обсуждение деталей</h3>
+                </div>
+                
+                <div class="process-step">
+                    <div class="process-number">3</div>
+                    <div class="process-icon">📋</div>
+                    <h3 class="process-title">Согласование ТЗ</h3>
+                </div>
+                
+                <div class="process-step">
+                    <div class="process-number">4</div>
+                    <div class="process-icon">⚙️</div>
+                    <h3 class="process-title">Разработка</h3>
+                </div>
+                
+                <div class="process-step">
+                    <div class="process-number">5</div>
+                    <div class="process-icon">✅</div>
+                    <h3 class="process-title">Сдача проекта</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Services Section -->
     <section class="services">
         <div class="container">
-            <h2 class="section-title">Мои услуги</h2>
+            <h2 class="section-title">Услуги</h2>
             <div class="services-grid">
                 <div class="service-card">
                     <div class="service-icon">🐍</div>
@@ -550,7 +765,7 @@
         }, observerOptions);
 
         // Observe elements for scroll animations
-        document.querySelectorAll('.service-card, .stat-item').forEach(el => {
+        document.querySelectorAll('.service-card, .stat-item, .tech-item, .process-step').forEach(el => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(30px)';
             el.style.transition = 'all 0.6s ease';
