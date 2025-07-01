@@ -4,7 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Разработка под ключ | Автоматизация | Продвижение в социальных сетях</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary-glow: #64ffda;
+            --secondary-glow: #48bbff;
+            --accent-glow: #ff6b6b;
+            --dark-bg: #0f0f23;
+            --light-text: #ffffff;
+            --muted-text: #b8c5d6;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -12,12 +24,62 @@
         }
 
         body {
-            font-family: 'Arial', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: 'Inter', 'Arial', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: linear-gradient(135deg, #0f0f23 0%, #1a1a3e 50%, #2d1b69 100%);
-            color: #ffffff;
+            color: var(--light-text);
             overflow-x: hidden;
             line-height: 1.6;
+            cursor: none;
         }
+        
+        /* Background Grid Texture */
+        body::after {
+            content: "";
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100vw;
+            height: 100vh;
+            background-image:
+                linear-gradient(rgba(184, 197, 214, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(184, 197, 214, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -2;
+            pointer-events: none;
+        }
+        
+        /* Custom Cursor */
+        .cursor-dot, .cursor-outline {
+            position: fixed;
+            top: 0;
+            left: 0;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transition: opacity 0.3s, transform 0.3s;
+        }
+        .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--primary-glow);
+        }
+        .cursor-outline {
+            width: 40px;
+            height: 40px;
+            border: 2px solid var(--primary-glow);
+            opacity: 0.5;
+            transition: width 0.3s, height 0.3s, opacity 0.3s;
+        }
+        body:hover a, body:hover .cta-button {
+            cursor: none;
+        }
+        .cursor-outline.hover {
+            width: 60px;
+            height: 60px;
+            opacity: 1;
+        }
+
 
         /* Animated Background Particles */
         .particles {
@@ -71,17 +133,9 @@
         }
 
         @keyframes rise {
-            0% {
-                bottom: -100px;
-                transform: translateX(0);
-            }
-            50% {
-                transform: translateX(100px);
-            }
-            100% {
-                bottom: 100vh;
-                transform: translateX(-200px);
-            }
+            0% { bottom: -100px; transform: translateX(0); }
+            50% { transform: translateX(100px); }
+            100% { bottom: 100vh; transform: translateX(-200px); }
         }
 
         /* Header */
@@ -95,40 +149,33 @@
             padding: 0 20px;
         }
 
-        .hero-content {
-            max-width: 900px;
-            z-index: 2;
-        }
-
+        .hero-content { max-width: 900px; z-index: 2; }
         .hero-title {
             font-size: clamp(2rem, 4vw, 3.2rem);
             font-weight: 700;
             margin-bottom: 2rem;
-            background: linear-gradient(135deg, #64ffda, #48bbff, #ff6b6b);
+            background: linear-gradient(135deg, var(--primary-glow), var(--secondary-glow), var(--accent-glow));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             animation: glow 2s ease-in-out infinite alternate;
             line-height: 1.3;
         }
-
         @keyframes glow {
             from { filter: drop-shadow(0 0 5px rgba(100, 255, 218, 0.3)); }
             to { filter: drop-shadow(0 0 20px rgba(100, 255, 218, 0.6)); }
         }
-
         .hero-subtitle {
             font-size: clamp(1.1rem, 2.5vw, 1.4rem);
             margin-bottom: 2rem;
             opacity: 0.9;
-            color: #b8c5d6;
+            color: var(--muted-text);
         }
-
         .cta-button {
             display: inline-block;
             padding: 18px 40px;
-            background: linear-gradient(135deg, #64ffda, #48bbff);
-            color: #0f0f23;
+            background: linear-gradient(135deg, var(--primary-glow), var(--secondary-glow));
+            color: var(--dark-bg);
             text-decoration: none;
             border-radius: 50px;
             font-weight: 600;
@@ -138,7 +185,6 @@
             position: relative;
             overflow: hidden;
         }
-
         .cta-button::before {
             content: '';
             position: absolute;
@@ -149,330 +195,122 @@
             background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
             transition: left 0.5s;
         }
-
-        .cta-button:hover::before {
-            left: 100%;
-        }
-
+        .cta-button:hover::before { left: 100%; }
         .cta-button:hover {
             transform: translateY(-3px);
             box-shadow: 0 15px 40px rgba(100, 255, 218, 0.5);
         }
 
-        /* Technologies Section */
-        .technologies {
+        /* Generic Section Styles */
+        .technologies, .process, .services, .stats, .final-cta {
             padding: 80px 20px;
-            background: rgba(0, 0, 0, 0.1);
             position: relative;
         }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
+        .final-cta, .stats { padding-top: 100px; padding-bottom: 100px; }
+        .technologies, .services { background: rgba(0, 0, 0, 0.1); }
+        .stats { background: rgba(0, 0, 0, 0.2); }
+        .container { max-width: 1200px; margin: 0 auto; }
         .section-title {
             text-align: center;
             font-size: clamp(2rem, 4vw, 3rem);
             margin-bottom: 3rem;
-            background: linear-gradient(135deg, #ffffff, #b8c5d6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            background: linear-gradient(135deg, var(--light-text), var(--muted-text));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
         }
 
-        .tech-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .tech-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 30px 20px;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 15px;
-            border: 1px solid rgba(100, 255, 218, 0.2);
-            transition: all 0.3s ease;
-            text-align: center;
-        }
-
-        .tech-item:hover {
-            background: rgba(255, 255, 255, 0.08);
-            border-color: #64ffda;
-            transform: translateY(-5px);
-        }
-
-        .tech-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, #64ffda, #48bbff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .tech-name {
-            color: #ffffff;
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-
-        /* Process Section */
-        .process {
-            padding: 80px 20px;
-            position: relative;
-        }
-
-        .process-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-top: 60px;
-        }
-
-        .process-step {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 40px 30px;
-            text-align: center;
-            transition: all 0.3s ease;
+        /* Card Aurora Effect */
+        .tech-item, .process-step, .service-card, .stat-item {
             position: relative;
             overflow: hidden;
         }
-
-        .process-step::before {
-            content: '';
+        .tech-item::after, .process-step::after, .service-card::after, .stat-item::after {
+            content: "";
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, #64ffda, #48bbff, #ff6b6b);
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border-radius: inherit;
+            background: radial-gradient(300px circle at var(--mouse-x) var(--mouse-y), rgba(100, 255, 218, 0.1), transparent 80%);
+            opacity: 0;
+            transition: opacity 0.4s ease-out;
+            z-index: 0;
         }
-
-        .process-step:hover::before {
-            transform: scaleX(1);
+        .tech-item:hover::after, .process-step:hover::after, .service-card:hover::after, .stat-item:hover::after {
+            opacity: 1;
         }
-
-        .process-step:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            background: rgba(255, 255, 255, 0.1);
+        /* Bring content above aurora effect */
+        .tech-icon, .tech-name, .process-number, .process-icon, .process-title, .service-icon, .service-title, .service-description, .stat-number, .stat-text {
+            position: relative;
+            z-index: 1;
         }
+        
+        /* Technologies Section */
+        .tech-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 30px; margin-top: 40px; }
+        .tech-item { display: flex; flex-direction: column; align-items: center; padding: 30px 20px; background: rgba(255, 255, 255, 0.03); border-radius: 15px; border: 1px solid rgba(100, 255, 218, 0.2); transition: all 0.3s ease; text-align: center; }
+        .tech-item:hover { background: rgba(255, 255, 255, 0.08); border-color: var(--primary-glow); transform: translateY(-5px); }
+        .tech-icon { font-size: 3rem; margin-bottom: 1rem; background: linear-gradient(135deg, var(--primary-glow), var(--secondary-glow)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .tech-name { color: var(--light-text); font-weight: 600; font-size: 0.9rem; }
 
-        .process-number {
-            display: inline-block;
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, #64ffda, #48bbff);
-            border-radius: 50%;
-            color: #0f0f23;
-            font-weight: bold;
-            font-size: 1.2rem;
-            line-height: 50px;
-            margin-bottom: 1.5rem;
+        /* Process Section */
+        .process-container { display: flex; align-items: center; justify-content: center; gap: 20px; margin-top: 60px; flex-wrap: wrap; }
+        .process-step { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 15px; padding: 25px 20px; text-align: center; transition: all 0.3s ease; width: 180px; min-height: 160px; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+        .process-step::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--primary-glow), var(--secondary-glow), var(--accent-glow)); transform: scaleX(0); transition: transform 0.3s ease; }
+        .process-step:hover::before { transform: scaleX(1); }
+        .process-step:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3); background: rgba(255, 255, 255, 0.1); }
+        .process-number { position: absolute; top: 15px; right: 15px; width: 30px; height: 30px; background: linear-gradient(135deg, var(--primary-glow), var(--secondary-glow)); border-radius: 50%; color: var(--dark-bg); font-weight: bold; font-size: 0.9rem; line-height: 30px; }
+        .process-icon { font-size: 2.5rem; margin-bottom: 1rem; background: linear-gradient(135deg, var(--primary-glow), var(--secondary-glow)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .process-title { font-size: 1rem; font-weight: 600; color: var(--light-text); line-height: 1.3; }
+        
+        /* New Process Arrow */
+        .process-arrow {
+            width: 60px; height: 2px; background-color: var(--primary-glow);
+            position: relative; margin: 0 10px;
         }
-
-        .process-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, #64ffda, #48bbff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .process-title {
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: #ffffff;
-        }
-
-        .process-description {
-            color: #b8c5d6;
-            line-height: 1.6;
+        .process-arrow::after {
+            content: ''; position: absolute; width: 10px; height: 10px;
+            border-top: 2px solid var(--primary-glow); border-right: 2px solid var(--primary-glow);
+            right: 0; top: 50%; transform: translateY(-50%) rotate(45deg);
         }
 
         /* Services Section */
-        .services {
-            padding: 80px 20px;
-            background: rgba(0, 0, 0, 0.1);
-            position: relative;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            margin-top: 60px;
-        }
-
-        .service-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 40px 30px;
-            text-align: center;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, #64ffda, #48bbff, #ff6b6b);
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
-        }
-
-        .service-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        .service-icon {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, #64ffda, #48bbff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .service-title {
-            font-size: 1.4rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: #ffffff;
-        }
-
-        .service-description {
-            color: #b8c5d6;
-            line-height: 1.6;
-        }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 60px; }
+        .service-card { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; padding: 40px 30px; text-align: center; transition: all 0.3s ease; }
+        .service-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--primary-glow), var(--secondary-glow), var(--accent-glow)); transform: scaleX(0); transition: transform 0.3s ease; }
+        .service-card:hover::before { transform: scaleX(1); }
+        .service-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3); background: rgba(255, 255, 255, 0.1); }
+        .service-icon { font-size: 3rem; margin-bottom: 1.5rem; background: linear-gradient(135deg, var(--primary-glow), var(--secondary-glow)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .service-title { font-size: 1.4rem; font-weight: 600; margin-bottom: 1rem; color: var(--light-text); }
+        .service-description { color: var(--muted-text); line-height: 1.6; }
 
         /* Stats Section */
-        .stats {
-            padding: 100px 20px;
-            background: rgba(0, 0, 0, 0.2);
-            position: relative;
-        }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-top: 60px; }
+        .stat-item { text-align: center; padding: 30px; background: rgba(255, 255, 255, 0.03); border-radius: 15px; transition: all 0.3s ease; border: 1px solid rgba(100, 255, 218, 0.2); }
+        .stat-item:hover { background: rgba(255, 255, 255, 0.08); border-color: var(--primary-glow); transform: translateY(-5px); }
+        .stat-number { font-size: 3rem; font-weight: 700; color: var(--primary-glow); margin-bottom: 0.5rem; background: linear-gradient(135deg, var(--primary-glow), var(--secondary-glow)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .stat-text { color: var(--light-text); font-size: 1.1rem; font-weight: 500; }
 
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-top: 60px;
-        }
-
-        .stat-item {
-            text-align: center;
-            padding: 30px;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 15px;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(100, 255, 218, 0.2);
-        }
-
-        .stat-item:hover {
-            background: rgba(255, 255, 255, 0.08);
-            border-color: #64ffda;
-            transform: translateY(-5px);
-        }
-
-        .stat-number {
-            font-size: 3rem;
-            font-weight: 700;
-            color: #64ffda;
-            margin-bottom: 0.5rem;
-            background: linear-gradient(135deg, #64ffda, #48bbff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .stat-text {
-            color: #ffffff;
-            font-size: 1.1rem;
-            font-weight: 500;
-        }
-
-        /* CTA Section */
+        /* Final CTA Section */
         .final-cta {
-            padding: 100px 20px;
             text-align: center;
-            position: relative;
         }
-
-        .cta-content {
-            max-width: 600px;
-            margin: 0 auto;
+        .cta-content { 
+            max-width: 600px; 
+            margin: 0 auto; 
         }
-
-        .cta-title {
-            font-size: clamp(2rem, 4vw, 2.5rem);
-            margin-bottom: 1.5rem;
-            color: #ffffff;
+        .cta-title { 
+            font-size: clamp(2rem, 4vw, 2.5rem); 
+            margin-bottom: 1.5rem; color: var(--light-text); 
         }
-
-        .cta-description {
-            font-size: 1.1rem;
-            color: #b8c5d6;
-            margin-bottom: 2.5rem;
+        .cta-description { 
+            font-size: 1.1rem; 
+            color: var(--muted-text); 
+            margin-bottom: 2.5rem; 
         }
 
         /* Floating Elements */
-        .floating-element {
-            position: absolute;
-            background: linear-gradient(45deg, rgba(100, 255, 218, 0.1), rgba(72, 187, 255, 0.1));
-            border-radius: 50%;
-            animation: floatAround 8s ease-in-out infinite;
-        }
-
-        .floating-element:nth-child(1) {
-            width: 60px;
-            height: 60px;
-            top: 20%;
-            left: 10%;
-            animation-delay: 0s;
-        }
-
-        .floating-element:nth-child(2) {
-            width: 40px;
-            height: 40px;
-            top: 60%;
-            right: 15%;
-            animation-delay: -2s;
-        }
-
-        .floating-element:nth-child(3) {
-            width: 80px;
-            height: 80px;
-            bottom: 20%;
-            left: 20%;
-            animation-delay: -4s;
-        }
-
+        .floating-element { position: absolute; background: linear-gradient(45deg, rgba(100, 255, 218, 0.1), rgba(72, 187, 255, 0.1)); border-radius: 50%; animation: floatAround 8s ease-in-out infinite; }
+        .floating-element:nth-child(1) { width: 60px; height: 60px; top: 20%; left: 10%; animation-delay: 0s; }
+        .floating-element:nth-child(2) { width: 40px; height: 40px; top: 60%; right: 15%; animation-delay: -2s; }
+        .floating-element:nth-child(3) { width: 80px; height: 80px; bottom: 20%; left: 20%; animation-delay: -4s; }
         @keyframes floatAround {
             0%, 100% { transform: translate(0, 0) rotate(0deg); }
             25% { transform: translate(30px, -30px) rotate(90deg); }
@@ -480,35 +318,56 @@
             75% { transform: translate(20px, 10px) rotate(270deg); }
         }
 
+        /* Scroll Animation Styles */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .animate-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .process-arrow.animate-on-scroll {
+            transform: scaleX(0);
+            transform-origin: left;
+        }
+        .process-arrow.animate-on-scroll.is-visible {
+            transform: scaleX(1);
+        }
+        
         /* Responsive */
+        @media (max-width: 1024px) {
+            .process-container { gap: 15px; }
+            .process-step { width: 160px; min-height: 140px; padding: 20px 15px; }
+            .process-arrow { width: 40px; margin: 0 10px; }
+        }
         @media (max-width: 768px) {
-            .hero-title {
-                font-size: clamp(1.5rem, 6vw, 2.5rem);
+            .hero-title { font-size: clamp(1.5rem, 6vw, 2.5rem); }
+            .tech-grid { grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 20px; }
+            .process-container { flex-direction: column; gap: 20px; }
+            .process-arrow {
+                width: 2px; height: 40px; margin: 15px 0;
             }
-            
-            .tech-grid {
-                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-                gap: 20px;
+            .process-arrow::after {
+                top: auto; bottom: 0; left: 50%; transform: translateX(-50%) rotate(135deg);
             }
-            
-            .process-grid,
-            .services-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
+            .process-arrow.animate-on-scroll {
+                transform: scaleY(0); transform-origin: top;
             }
-            
-            .stats-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
+            .process-arrow.animate-on-scroll.is-visible {
+                transform: scaleY(1);
             }
-            
-            .service-card, .stat-item, .process-step {
-                padding: 30px 20px;
-            }
+            .process-step { width: 100%; max-width: 280px; }
+            .services-grid, .stats-grid { grid-template-columns: 1fr; gap: 20px; }
+            .service-card, .stat-item { padding: 30px 20px; }
         }
     </style>
 </head>
 <body>
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
     <!-- Animated Background -->
     <div class="particles" id="particles"></div>
     
@@ -566,34 +425,34 @@
     <section class="process">
         <div class="container">
             <h2 class="section-title">Взаимодействие</h2>
-            <div class="process-grid">
+            <div class="process-container">
                 <div class="process-step">
                     <div class="process-number">1</div>
-                    <div class="process-icon">💬</div>
+                    <div class="process-icon">💌</div>
                     <h3 class="process-title">Обращение</h3>
                 </div>
-                
+                <div class="process-arrow"></div>
                 <div class="process-step">
                     <div class="process-number">2</div>
-                    <div class="process-icon">🔍</div>
+                    <div class="process-icon">🎯</div>
                     <h3 class="process-title">Обсуждение деталей</h3>
                 </div>
-                
+                <div class="process-arrow"></div>
                 <div class="process-step">
                     <div class="process-number">3</div>
-                    <div class="process-icon">📋</div>
+                    <div class="process-icon">📝</div>
                     <h3 class="process-title">Согласование ТЗ</h3>
                 </div>
-                
+                <div class="process-arrow"></div>
                 <div class="process-step">
                     <div class="process-number">4</div>
                     <div class="process-icon">⚙️</div>
                     <h3 class="process-title">Разработка</h3>
                 </div>
-                
+                <div class="process-arrow"></div>
                 <div class="process-step">
                     <div class="process-number">5</div>
-                    <div class="process-icon">✅</div>
+                    <div class="process-icon">🎉</div>
                     <h3 class="process-title">Сдача проекта</h3>
                 </div>
             </div>
@@ -610,31 +469,26 @@
                     <h3 class="service-title">Разработка на Python</h3>
                     <p class="service-description">Веб-приложения, API, автоматизация бизнес-процессов, машинное обучение и анализ данных</p>
                 </div>
-                
                 <div class="service-card">
                     <div class="service-icon">⚡</div>
                     <h3 class="service-title">Node.js & Electron</h3>
                     <p class="service-description">Высокопроизводительные серверные решения и кроссплатформенные desktop приложения</p>
                 </div>
-                
                 <div class="service-card">
                     <div class="service-icon">🤖</div>
                     <h3 class="service-title">Telegram боты</h3>
                     <p class="service-description">Умные боты для автоматизации бизнеса, интеграции с CRM и обработки заказов</p>
                 </div>
-                
                 <div class="service-card">
                     <div class="service-icon">📊</div>
                     <h3 class="service-title">Парсинг и автоматизация</h3>
                     <p class="service-description">Сбор данных, мониторинг конкурентов, автоматизация рутинных задач</p>
                 </div>
-                
                 <div class="service-card">
                     <div class="service-icon">📱</div>
                     <h3 class="service-title">SMM продвижение</h3>
                     <p class="service-description">Комплексное продвижение в социальных сетях, контент-стратегия, реклама под ключ</p>
                 </div>
-                
                 <div class="service-card">
                     <div class="service-icon">🔧</div>
                     <h3 class="service-title">Интеграции</h3>
@@ -652,12 +506,10 @@
                     <div class="stat-number">2000+</div>
                     <div class="stat-text">Закрытых проектов</div>
                 </div>
-                
                 <div class="stat-item">
                     <div class="stat-number">1400+</div>
                     <div class="stat-text">Положительных отзывов</div>
                 </div>
-                
                 <div class="stat-item">
                     <div class="stat-number">47%</div>
                     <div class="stat-text">Стали постоянными клиентами</div>
@@ -676,100 +528,112 @@
     </section>
 
     <script>
-        // Create floating particles
-        function createParticles() {
-            const particlesContainer = document.getElementById('particles');
-            const particleCount = 50;
-
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                
-                const size = Math.random() * 4 + 2;
-                particle.style.width = size + 'px';
-                particle.style.height = size + 'px';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.top = Math.random() * 100 + '%';
-                particle.style.animationDuration = (Math.random() * 3 + 4) + 's';
-                particle.style.animationDelay = Math.random() * 2 + 's';
-                
-                particlesContainer.appendChild(particle);
+        document.addEventListener('DOMContentLoaded', () => {
+            // Create floating particles
+            function createParticles() {
+                const particlesContainer = document.getElementById('particles');
+                const particleCount = 50;
+                if (!particlesContainer) return;
+                for (let i = 0; i < particleCount; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'particle';
+                    const size = Math.random() * 4 + 2;
+                    particle.style.width = `${size}px`;
+                    particle.style.height = `${size}px`;
+                    particle.style.left = `${Math.random() * 100}%`;
+                    particle.style.top = `${Math.random() * 100}%`;
+                    particle.style.animationDuration = `${Math.random() * 3 + 4}s`;
+                    particle.style.animationDelay = `${Math.random() * 2}s`;
+                    particlesContainer.appendChild(particle);
+                }
             }
-        }
 
-        // Create floating bubbles
-        function createBubbles() {
-            const bubblesContainer = document.getElementById('bubbles');
-            
-            setInterval(() => {
-                const bubble = document.createElement('div');
-                bubble.className = 'bubble';
-                
-                const size = Math.random() * 60 + 20;
-                bubble.style.width = size + 'px';
-                bubble.style.height = size + 'px';
-                bubble.style.left = Math.random() * 100 + '%';
-                bubble.style.animationDuration = (Math.random() * 3 + 8) + 's';
-                
-                bubblesContainer.appendChild(bubble);
-                
-                setTimeout(() => {
-                    bubble.remove();
-                }, 12000);
-            }, 2000);
-        }
+            // Create floating bubbles
+            function createBubbles() {
+                const bubblesContainer = document.getElementById('bubbles');
+                if (!bubblesContainer) return;
+                setInterval(() => {
+                    const bubble = document.createElement('div');
+                    bubble.className = 'bubble';
+                    const size = Math.random() * 60 + 20;
+                    bubble.style.width = `${size}px`;
+                    bubble.style.height = `${size}px`;
+                    bubble.style.left = `${Math.random() * 100}%`;
+                    bubble.style.animationDuration = `${Math.random() * 3 + 8}s`;
+                    bubblesContainer.appendChild(bubble);
+                    setTimeout(() => bubble.remove(), 12000);
+                }, 2000);
+            }
 
-        // Smooth scroll for better UX
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
+            // Custom Cursor Logic
+            const cursorDot = document.querySelector('.cursor-dot');
+            const cursorOutline = document.querySelector('.cursor-outline');
+            window.addEventListener('mousemove', e => {
+                const posX = e.clientX;
+                const posY = e.clientY;
+                cursorDot.style.left = `${posX}px`;
+                cursorDot.style.top = `${posY}px`;
+                cursorOutline.animate({
+                    left: `${posX}px`,
+                    top: `${posY}px`
+                }, { duration: 500, fill: "forwards" });
+            });
+            document.querySelectorAll('a, .cta-button').forEach(el => {
+                el.addEventListener('mouseenter', () => cursorOutline.classList.add('hover'));
+                el.addEventListener('mouseleave', () => cursorOutline.classList.remove('hover'));
+            });
+
+            // Card Aurora Effect
+            document.querySelectorAll('.tech-item, .process-step, .service-card, .stat-item').forEach(card => {
+                card.addEventListener('mousemove', e => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    card.style.setProperty('--mouse-x', `${x}px`);
+                    card.style.setProperty('--mouse-y', `${y}px`);
                 });
             });
-        });
 
-        // Mouse movement parallax effect
-        document.addEventListener('mousemove', (e) => {
-            const mouseX = e.clientX / window.innerWidth;
-            const mouseY = e.clientY / window.innerHeight;
+            // Intersection Observer for Cascade Scroll Animations
+            const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            function setupStaggeredAnimation(selector) {
+                document.querySelectorAll(selector).forEach((el, index) => {
+                    el.classList.add('animate-on-scroll');
+                    el.style.transitionDelay = `${index * 100}ms`;
+                    observer.observe(el);
+                });
+            }
+
+            setupStaggeredAnimation('.tech-item');
+            setupStaggeredAnimation('.service-card');
+            setupStaggeredAnimation('.stat-item');
             
-            document.querySelectorAll('.floating-element').forEach((element, index) => {
-                const speed = (index + 1) * 0.5;
-                const x = (mouseX - 0.5) * speed * 50;
-                const y = (mouseY - 0.5) * speed * 50;
-                
-                element.style.transform = `translate(${x}px, ${y}px)`;
+            // Special setup for process steps and arrows to animate in sequence
+            document.querySelectorAll('.process-container > *').forEach((el, index) => {
+                el.classList.add('animate-on-scroll');
+                el.style.transitionDelay = `${index * 120}ms`;
+                observer.observe(el);
             });
-        });
 
-        // Initialize animations
-        document.addEventListener('DOMContentLoaded', () => {
+            // Animate the final CTA content
+            document.querySelectorAll('.cta-content').forEach(el => {
+                el.classList.add('animate-on-scroll');
+                observer.observe(el);
+            });
+
+
+            // Initialize animations
             createParticles();
             createBubbles();
-        });
-
-        // Intersection Observer for scroll animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        // Observe elements for scroll animations
-        document.querySelectorAll('.service-card, .stat-item, .tech-item, .process-step').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'all 0.6s ease';
-            observer.observe(el);
         });
     </script>
 </body>
