@@ -202,13 +202,12 @@
         }
 
         /* Generic Section Styles */
-        .technologies, .process, .services, .stats, .final-cta {
+        .technologies, .process, .services, .final-cta {
             padding: 80px 20px;
             position: relative;
         }
-        .final-cta, .stats { padding-top: 100px; padding-bottom: 100px; }
+        .final-cta { padding-top: 100px; padding-bottom: 100px; }
         .technologies, .services { background: rgba(0, 0, 0, 0.1); }
-        .stats { background: rgba(0, 0, 0, 0.2); }
         .container { max-width: 1200px; margin: 0 auto; }
         .section-title {
             text-align: center;
@@ -219,11 +218,11 @@
         }
 
         /* Card Aurora Effect */
-        .tech-item, .process-step, .service-card, .stat-item {
+        .tech-item, .process-step, .service-card {
             position: relative;
             overflow: hidden;
         }
-        .tech-item::after, .process-step::after, .service-card::after, .stat-item::after {
+        .tech-item::after, .process-step::after, .service-card::after {
             content: "";
             position: absolute;
             top: 0; left: 0;
@@ -234,11 +233,11 @@
             transition: opacity 0.4s ease-out;
             z-index: 0;
         }
-        .tech-item:hover::after, .process-step:hover::after, .service-card:hover::after, .stat-item:hover::after {
+        .tech-item:hover::after, .process-step:hover::after, .service-card:hover::after {
             opacity: 1;
         }
         /* Bring content above aurora effect */
-        .tech-icon, .tech-name, .process-number, .process-icon, .process-title, .service-icon, .service-title, .service-description, .stat-number, .stat-text {
+        .tech-icon, .tech-name, .process-number, .process-icon, .process-title, .service-icon, .service-title, .service-description {
             position: relative;
             z-index: 1;
         }
@@ -280,13 +279,6 @@
         .service-icon { font-size: 3rem; margin-bottom: 1.5rem; background: linear-gradient(135deg, var(--primary-glow), var(--secondary-glow)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
         .service-title { font-size: 1.4rem; font-weight: 600; margin-bottom: 1rem; color: var(--light-text); }
         .service-description { color: var(--muted-text); line-height: 1.6; }
-
-        /* Stats Section */
-        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-top: 60px; }
-        .stat-item { text-align: center; padding: 30px; background: rgba(255, 255, 255, 0.03); border-radius: 15px; transition: all 0.3s ease; border: 1px solid rgba(100, 255, 218, 0.2); }
-        .stat-item:hover { background: rgba(255, 255, 255, 0.08); border-color: var(--primary-glow); transform: translateY(-5px); }
-        .stat-number { font-size: 3rem; font-weight: 700; color: var(--primary-glow); margin-bottom: 0.5rem; background: linear-gradient(135deg, var(--primary-glow), var(--secondary-glow)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-        .stat-text { color: var(--light-text); font-size: 1.1rem; font-weight: 500; }
 
         /* Final CTA Section */
         .final-cta {
@@ -359,8 +351,8 @@
                 transform: scaleY(1);
             }
             .process-step { width: 100%; max-width: 280px; }
-            .services-grid, .stats-grid { grid-template-columns: 1fr; gap: 20px; }
-            .service-card, .stat-item { padding: 30px 20px; }
+            .services-grid { grid-template-columns: 1fr; gap: 20px; }
+            .service-card { padding: 30px 20px; }
         }
     </style>
 </head>
@@ -498,26 +490,6 @@
         </div>
     </section>
 
-    <!-- Stats Section -->
-    <section class="stats">
-        <div class="container">
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <div class="stat-number">2000+</div>
-                    <div class="stat-text">Закрытых проектов</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">1400+</div>
-                    <div class="stat-text">Положительных отзывов</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">47%</div>
-                    <div class="stat-text">Стали постоянными клиентами</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Final CTA -->
     <section class="final-cta">
         <div class="cta-content">
@@ -584,7 +556,7 @@
             });
 
             // Card Aurora Effect
-            document.querySelectorAll('.tech-item, .process-step, .service-card, .stat-item').forEach(card => {
+            document.querySelectorAll('.tech-item, .process-step, .service-card').forEach(card => {
                 card.addEventListener('mousemove', e => {
                     const rect = card.getBoundingClientRect();
                     const x = e.clientX - rect.left;
@@ -615,7 +587,6 @@
 
             setupStaggeredAnimation('.tech-item');
             setupStaggeredAnimation('.service-card');
-            setupStaggeredAnimation('.stat-item');
             
             // Special setup for process steps and arrows to animate in sequence
             document.querySelectorAll('.process-container > *').forEach((el, index) => {
