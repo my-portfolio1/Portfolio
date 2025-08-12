@@ -383,14 +383,16 @@
             max-width: 600px; 
             margin: 0 auto; 
         }
-        .cta-title { 
-            font-size: clamp(2rem, 4vw, 2.5rem); 
-            margin-bottom: 1.5rem; color: var(--light-text); 
-        }
         .cta-description { 
             font-size: 1.1rem; 
             color: var(--muted-text); 
-            margin-bottom: 2.5rem; 
+            margin-bottom: 2.5rem;
+        }
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
         }
 
         /* Floating Elements */
@@ -425,6 +427,11 @@
             .skill-card, .project-card { padding: 30px 20px; }
             .projects-grid { grid-template-columns: 1fr; }
             .project-card { min-width: unset; }
+            .cta-buttons { 
+                flex-direction: column; 
+                align-items: center; 
+                gap: 20px; 
+            }
         }
     </style>
 </head>
@@ -673,9 +680,11 @@
     <!-- Final CTA -->
     <section class="final-cta">
         <div class="cta-content">
-            <h2 class="cta-title">Готовы начать проект?</h2>
             <p class="cta-description">Буду рад обсудить ваши идеи и воплотить их в жизнь. От концепции до готового продукта.</p>
-            <a href="https://t.me/EcommerceGr" class="cta-button" target="_blank">💬 Задать вопрос</a>
+            <div class="cta-buttons">
+                <a href="https://t.me/EcommerceGr" class="cta-button" target="_blank">❓ Задать вопрос</a>
+                <a href="https://t.me/+dYrSdVlDfNM5ZTJi" class="cta-button" target="_blank">📂 Посмотреть все проекты</a>
+            </div>
         </div>
     </section>
 
