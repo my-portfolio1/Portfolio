@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Антон Коршунов | Python/JS Developer & Digital Marketing</title>
+    <title>Антон Коршунов | Python Developer & Digital Marketing</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -394,9 +394,12 @@
         /* Tech Icons Grid */
         .tech-icons-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+            /* Changed to auto-fit + center justify for better centering */
+            grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
             gap: 25px;
             margin-top: 50px;
+            justify-content: center; /* Centers tracks */
+            justify-items: center;   /* Centers items within tracks if they don't stretch */
         }
 
         .tech-card {
@@ -410,6 +413,8 @@
             aspect-ratio: 1;
             transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
             border: 1px solid transparent;
+            width: 100%; /* Ensure it takes full width of grid cell */
+            max-width: 140px; /* Cap size so they don't get huge */
         }
 
         .tech-card:hover {
@@ -780,7 +785,7 @@
         <div class="container hero-content">
             <p class="hero-pretitle">ANTON KORSHUNOV</p>
             <h1 class="hero-title">
-                Разработка на Python/JS.<br>
+                Разработка.<br>
                 <span class="gradient-text">Автоматизация.</span><br>
                 <span class="gradient-text-accent">Digital-маркетинг.</span>
             </h1>
@@ -817,6 +822,7 @@
                         <span class="tag">SQL (PostgreSQL, SQLite)</span>
                         <span class="tag">Electron</span>
                         <span class="tag">Telegram API (MtProto)</span>
+                        <span class="tag">Tkinter</span>
                     </div>
                 </div>
 
